@@ -9,5 +9,5 @@ class User(SqlAlchemyBase, SerializerMixin):
 
     id = sqlalchemy.Column(sqlalchemy.Integer,
                            primary_key=True, autoincrement=True)
-    nickname = sqlalchemy.Column(sqlalchemy.String, index=True, nullable=True, unique=True, autoincrement=True)
+    nickname = sqlalchemy.Column(sqlalchemy.String, index=True, nullable=True, unique=False, autoincrement=True)
     books = sqlalchemy.Column(sqlalchemy.String, nullable=True)
