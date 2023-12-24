@@ -16,4 +16,3 @@ class Book(SqlAlchemyBase, SerializerMixin):
     genre_id = sqlalchemy.Column(sqlalchemy.Integer,
                                  sqlalchemy.ForeignKey("genres.id"))
     genre = orm.relationship('Genre')
-    reviews = sqlalchemy.Column(sqlalchemy.String, nullable=True)
