@@ -55,7 +55,7 @@ def get_books():
     return books
 
 
-def creat_user(form):
+def create_user(form):
     db_sess = db_session.create_session()
     user = User(
         nickname=form['name'],
@@ -94,7 +94,7 @@ def add_user_book(user_id, book_id):
     return "Успешно"
 
 
-def creat_genre(form):
+def create_genre(form):
     db_sess = db_session.create_session()
     genre = Genre(
         title=form['title']
@@ -122,7 +122,7 @@ def del_genre(genre_id):
 
 get_users()
 form={'name': 'Sat', 'books': ''}
-print(creat_user(form))
+print(create_user(form))
 get_users()
 form1 = {'title':'KGBT+',
          'author':'Апостол Павел',
@@ -137,7 +137,7 @@ print(create_book(form1))
 print(add_user_book(1, 1))
 get_users()
 form3={'title':'Поэзия'}
-print(creat_genre(form3))
+print(create_genre(form3))
 get_genres()
 print(del_genre(2))
 get_genres()
