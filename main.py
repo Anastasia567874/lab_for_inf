@@ -27,8 +27,7 @@ def create_book(form):
         author=form['author'],
         age_limit=form['age_limit'],
         annotation=form['annotation'],
-        genre_id=genre_oth,
-        reviews=''
+        genre_id=genre_oth
     )
     db_sess.add(book)
     db_sess.commit()
