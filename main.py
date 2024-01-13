@@ -37,7 +37,7 @@ def del_book(book_id):
     book = db_sess.query(Book).get(book_id)
     db_sess.delete(book)
     db_sess.commit()
-    return "Успешно"
+    return "Успешно удалена книга"
 
 
 def get_books():
@@ -53,7 +53,7 @@ def get_books():
     return books
 
 
-def create_user(form):
+def creat_user(form):
     db_sess = db_session.create_session()
     user = User(
         nickname=form['name'],
@@ -61,7 +61,7 @@ def create_user(form):
     )
     db_sess.add(user)
     db_sess.commit()
-    return "Успешно"
+    return "Успешно создан пользователь"
 
 
 def get_users():
@@ -81,25 +81,28 @@ def del_user(user_id):
     user = db_sess.query(User).get(user_id)
     db_sess.delete(user)
     db_sess.commit()
-    return "Успешно"
+    return "Успешно удален пользователь"
 
 
 def add_user_book(user_id, book_id):
     db_sess = db_session.create_session()
     user = db_sess.query(User).get(user_id)
+    db_sess.delete(user)
     user.books += ' ' + str(book_id)
+    print(user.books)
+    db_sess.add(user)
     db_sess.commit()
-    return "Успешно"
+    return "Успешно добавлена книга в список пользователя"
 
 
-def create_genre(form):
+def creat_genre(form):
     db_sess = db_session.create_session()
     genre = Genre(
         title=form['title']
     )
     db_sess.add(genre)
     db_sess.commit()
-    return "Успешно"
+    return "Успешно создан жанр"
 
 
 def get_genres():
@@ -115,27 +118,27 @@ def del_genre(genre_id):
     genre = db_sess.query(Genre).get(genre_id)
     db_sess.delete(genre)
     db_sess.commit()
-    return "Успешно"
+    return "Успешно удален жанр"
 
 
 get_users()
 form={'name': 'Sat', 'books': ''}
-print(create_user(form))
+print(creat_user(form))
 get_users()
 form1 = {'title':'KGBT+',
-         'author':'Апостол Павел',
+         'author':'Пелевин',
          'age_limit': 18,
             'annotation': """Книга представляет собой нечто среднее между мемуарами,
              тренингом по достижению успеха и сборником мемов. 
              Все это щедро приправлено фирменной авторской психоделикой, 
              без которой не обходится ни одно произведение Пелевина.""",
-'genreother': 'Роман'
+'genre': 'Роман'
          }
 print(create_book(form1))
 print(add_user_book(1, 1))
 get_users()
 form3={'title':'Поэзия'}
-print(create_genre(form3))
+print(creat_genre(form3))
 get_genres()
 print(del_genre(2))
 get_genres()
